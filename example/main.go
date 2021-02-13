@@ -1,22 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-
-	"github.com/richardimaoka/goxample/greet"
+	"os"
 )
 
 func main() {
-	greet.Hello()
-	h := greet.NewHidden()
-	fmt.Printf("%v\n", h.MethodOnHidden())
-
-	fmt.Println(greet.Shark)
-
-	oct := greet.Octopus{
-		Name:  "Jesse",
-		Color: "orange",
-	}
-
-	fmt.Println(oct.String())
+	reader := bufio.NewReader(os.Stdin)
+	text, _ := reader.ReadString('\n')
+	fmt.Println(text)
 }
