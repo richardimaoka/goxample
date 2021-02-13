@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sbtt -version
