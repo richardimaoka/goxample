@@ -1,20 +1,22 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 
-    "github.com/richardimaoka/goxample/greet"
+	"github.com/richardimaoka/goxample/greet"
 )
 
 func main() {
-    greet.Hello()
+	greet.Hello()
+	h := greet.NewHidden()
+	fmt.Printf("%v\n", h.MethodOnHidden())
 
-    fmt.Println(greet.Shark)
+	fmt.Println(greet.Shark)
 
-    oct := greet.Octopus{
-        Name:  "Jesse",
-        Color: "orange",
-    }
+	oct := greet.Octopus{
+		Name:  "Jesse",
+		Color: "orange",
+	}
 
-    fmt.Println(oct.String())
+	fmt.Println(oct.String())
 }
