@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -26,9 +27,11 @@ func TestAll(t *testing.T) {
 		{Budget: 100 * MAN, CPAs: []float64{300, 2402, 2500}},
 	}
 
-	for _, input := range testInputs {
-		allocatedBudgets := AllocationAlgorithm(input)
-		validateAllocatedBudgetsTotal(input.Budget, allocatedBudgets, t)
-		validateMinimumAllocation(input.Budget, allocatedBudgets, t)
+	for i, input := range testInputs {
+		t.Run(fmt.Sprintf("test case: %d", i), func(t *testing.T) {
+			allocatedBudgets := AllocationAlgorithm(input)
+			validateAllocatedBudgetsTotal(input.Budget, allocatedBudgets, t)
+			validateMinimumAllocation(input.Budget, allocatedBudgets, t)
+		})
 	}
 }
