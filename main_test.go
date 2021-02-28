@@ -12,14 +12,14 @@ func TestAbs(t *testing.T) {
 	}
 }
 
-func validateAllocatedBudgetsTotal(budget float64, allocatedBudgets []float64) bool {
+func validateAllocatedBudgetsTotal(budget int, allocatedBudgets []int) bool {
 	allocatedTotal := CalculateTotal(allocatedBudgets)
-	return math.Abs((budget-allocatedTotal)/budget) < 0.000001
+	return budget == allocatedTotal
 }
 
-func validateMinimumAllocation(budget float64, allocatedBudgets []float64) bool {
+func validateMinimumAllocation(budget int, allocatedBudgets []int) bool {
 	for _, v := range allocatedBudgets {
-		proportion := v / budget
+		proportion := float64(v) / float64(budget)
 		if proportion < 0.1 {
 			return false
 		}

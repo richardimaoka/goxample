@@ -2,8 +2,8 @@ package main
 
 import "fmt"
 
-func CalculateTotal(slice []float64) float64 {
-	total := 0.0
+func CalculateTotal(slice []int) int {
+	total := 0
 	for _, v := range slice {
 		total += v
 	}
@@ -22,5 +22,5 @@ func main() {
 
 	slice := []float64{10, 10, 10}
 
-	fmt.Println(CalculateInverse(slice))
+	fmt.Println(Calculat(slice))
 }
