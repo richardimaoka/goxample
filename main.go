@@ -26,6 +26,11 @@ func CalculateInverse(slice []float64) []float64 {
 	return inversed
 }
 
+const (
+	MAN = 10000
+	SEN = 1000
+)
+
 type Input struct {
 	Budget int
 	CPAs   []float64

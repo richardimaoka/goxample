@@ -11,23 +11,24 @@ func validateAllocatedBudgetsTotal(budget int, allocatedBudgets []int, t *testin
 	}
 }
 
-func validateMinimumAllocation(budget int, allocatedBudgets []int) bool {
+func validateMinimumAllocation(budget int, allocatedBudgets []int, t *testing.T) {
 	for _, v := range allocatedBudgets {
-		proportion := float64(v) / float64(budget)
-		if proportion < 0.1 {
-			return false
+		allocation := float64(v) / float64(budget)
+		if allocation < 0.1 {
+			t.Errorf("allocation = %v is smaller than 10 percent", allocation)
 		}
 	}
-	return true
 }
 
 func TestAll(t *testing.T) {
 	testInputs := []Input{
-		{1000000, []float64{100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}},
+		{Budget: 10 * MAN, CPAs: []float64{100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}},
+		{Budget: 100 * MAN, CPAs: []float64{300, 2402, 2500}},
 	}
 
 	for _, input := range testInputs {
 		allocatedBudgets := AllocationAlgorithm(input)
 		validateAllocatedBudgetsTotal(input.Budget, allocatedBudgets, t)
+		validateMinimumAllocation(input.Budget, allocatedBudgets, t)
 	}
 }
