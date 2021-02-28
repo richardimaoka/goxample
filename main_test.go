@@ -1,20 +1,14 @@
 package main
 
 import (
-	"math"
 	"testing"
 )
 
-func TestAbs(t *testing.T) {
-	got := math.Abs(-1)
-	if got != 1 {
-		t.Errorf("Abs(-1) = %f; want 1", got)
+func validateAllocatedBudgetsTotal(budget int, allocatedBudgets []int, t *testing.T) {
+	allocatedTotal := CalculateTotalBudget(allocatedBudgets)
+	if budget != allocatedTotal {
+		t.Errorf("budget = %d is different from total of allocated budgets = %d, where allocated budgets are = %v", budget, allocatedTotal, allocatedBudgets)
 	}
-}
-
-func validateAllocatedBudgetsTotal(budget int, allocatedBudgets []int) bool {
-	allocatedTotal := CalculateTotal(allocatedBudgets)
-	return budget == allocatedTotal
 }
 
 func validateMinimumAllocation(budget int, allocatedBudgets []int) bool {
@@ -25,4 +19,15 @@ func validateMinimumAllocation(budget int, allocatedBudgets []int) bool {
 		}
 	}
 	return true
+}
+
+func TestAll(t *testing.T) {
+	testInputs := []Input{
+		{1000000, []float64{100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}},
+	}
+
+	for _, input := range testInputs {
+		allocatedBudgets := AllocationAlgorithm(input)
+		validateAllocatedBudgetsTotal(input.Budget, allocatedBudgets, t)
+	}
 }
