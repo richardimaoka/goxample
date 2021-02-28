@@ -18,9 +18,14 @@ func CalculateInverse(slice []float64) []float64 {
 	return inversed
 }
 
+type Input struct {
+	Budget int
+	CPAs   []int
+}
+
 func main() {
+	input := Input{10000000, []int{10, 10, 10}}
 
-	slice := []float64{10, 10, 10}
-
-	fmt.Println(Calculat(slice))
+	fmt.Println(input.Budget)
+	fmt.Println(CalculateTotal(input.CPAs))
 }
