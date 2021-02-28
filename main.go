@@ -3,5 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("hello world")
+
+	slice := []float64{10, 10, 10}
+
+	fmt.Println(CalculateTotal(slice))
 }
