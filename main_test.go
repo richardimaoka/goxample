@@ -16,3 +16,13 @@ func validateAllocatedBudgetsTotal(budget float64, allocatedBudgets []float64) b
 	allocatedTotal := CalculateTotal(allocatedBudgets)
 	return math.Abs((budget-allocatedTotal)/budget) < 0.000001
 }
+
+func validateMinimumAllocation(budget float64, allocatedBudgets []float64) bool {
+	for _, v := range allocatedBudgets {
+		proportion := v / budget
+		if proportion < 0.1 {
+			return false
+		}
+	}
+	return true
+}
